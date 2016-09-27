@@ -1,0 +1,201 @@
+; File: Lusbapi.inf
+;
+; Installation information for the L-Card USB devices
+; Copyright 2008, L-Card Ltd.
+;
+
+[Version]
+Signature="$CHICAGO$"
+Class=Lusbapi
+ClassGUID={6CCD8FA1-FAC1-4823-83B8-72C7C8C5689B}
+provider=%LCARD%
+LayoutFile=layout.inf
+DriverVer=09/16/2010,6.0.2.0
+
+[Manufacturer]
+%MfgName%=LCard, NTx86, NTamd64
+
+[LCard]
+%USB\VID_0471&PID_0440.DeviceDesc%=LCARD_E440.Dev , USB\VID_0471&PID_0440
+%USB\VID_0471&PID_0140.DeviceDesc%=LCARD_E140.Dev , USB\VID_0471&PID_0140
+%USB\VID_0471&PID_2010.DeviceDesc%=LCARD_E2010.Dev, USB\VID_0471&PID_2010
+%USB\VID_0471&PID_0154.DeviceDesc%=LCARD_E154.Dev , USB\VID_0471&PID_0154
+%USB\VID_0471&PID_E310.DeviceDesc%=LCARD_E310.Dev,  USB\VID_0471&PID_E310
+
+
+[LCard.NTx86]
+%USB\VID_0471&PID_0440.DeviceDesc%=LCARD_E440.Dev , USB\VID_0471&PID_0440
+%USB\VID_0471&PID_0140.DeviceDesc%=LCARD_E140.Dev , USB\VID_0471&PID_0140
+%USB\VID_0471&PID_2010.DeviceDesc%=LCARD_E2010.Dev, USB\VID_0471&PID_2010
+%USB\VID_0471&PID_0154.DeviceDesc%=LCARD_E154.Dev , USB\VID_0471&PID_0154
+%USB\VID_0471&PID_E310.DeviceDesc%=LCARD_E310.Dev,  USB\VID_0471&PID_E310
+
+
+[LCard.NTamd64]
+%USB\VID_0471&PID_0440.DeviceDesc%=LCARD_E440.Dev , USB\VID_0471&PID_0440
+%USB\VID_0471&PID_0140.DeviceDesc%=LCARD_E140.Dev , USB\VID_0471&PID_0140
+%USB\VID_0471&PID_2010.DeviceDesc%=LCARD_E2010.Dev, USB\VID_0471&PID_2010
+%USB\VID_0471&PID_0154.DeviceDesc%=LCARD_E154.Dev , USB\VID_0471&PID_0154
+%USB\VID_0471&PID_E310.DeviceDesc%=LCARD_E310.Dev,  USB\VID_0471&PID_E310
+
+
+[ClassInstall]
+Addreg=Class_AddReg
+
+; NT Style
+[ClassInstall32]
+Addreg=Class_AddReg
+
+[Class_AddReg]
+HKR,,,,%DeviceClassName%
+HKR,,Icon,,"-5"
+
+
+[PreCopySection]
+HKR,,NoSetupUI,,1
+
+[DestinationDirs]
+LCARD.Files.Ext = 10,System32\Drivers
+LCARD.Files.Inf = 10,INF
+
+
+; ************* E14-140 ***************
+[LCARD_E140.Dev]
+CopyFiles=LCARD.Files.Ext,LCARD.Files.Inf
+AddReg=LCARD.AddReg,LCARD_E140.AddReg
+
+[LCARD_E140.Dev.NT]
+CopyFiles=LCARD.Files.Ext,LCARD.Files.Inf
+AddReg=LCARD_E140.AddReg
+
+[LCARD_E140.AddReg]
+HKR,"Parameters","Type",0x00010001,31
+HKR,"Parameters","DSPType",0x00010001,0
+
+[LCARD_E140.Dev.NT.Services]
+Addservice = ldevusbu, 0x00000002, LCARD.AddService
+
+
+; ************* E-154 Module ***************
+[LCARD_E154.Dev]
+CopyFiles=LCARD.Files.Ext,LCARD.Files.Inf
+AddReg=LCARD.AddReg,LCARD_E154.AddReg
+
+[LCARD_E154.Dev.NT]
+CopyFiles=LCARD.Files.Ext,LCARD.Files.Inf
+AddReg=LCARD_E154.AddReg
+
+[LCARD_E154.AddReg]
+HKR,"Parameters","Type",0x00010001,38
+HKR,"Parameters","DSPType",0x00010001,0
+
+[LCARD_E154.Dev.NT.Services]
+Addservice = ldevusbu, 0x00000002, LCARD.AddService
+
+
+; ************* E14-440 ***************
+[LCARD_E440.Dev]
+CopyFiles=LCARD.Files.Ext,LCARD.Files.Inf
+AddReg=LCARD.AddReg,LCARD_E440.AddReg
+
+[LCARD_E440.Dev.NT]
+CopyFiles=LCARD.Files.Ext,LCARD.Files.Inf
+AddReg=LCARD_E440.AddReg
+
+[LCARD_E440.AddReg]
+HKR,"Parameters","Type",0x00010001,30
+HKR,"Parameters","DSPType",0x00010001,2185
+
+[LCARD_E440.Dev.NT.Services]
+Addservice = ldevusbu, 0x00000002, LCARD.AddService
+
+
+; ************* E20-10 Module ***************
+[LCARD_E2010.Dev]
+CopyFiles=LCARD.Files.Ext,LCARD.Files.Inf
+AddReg=LCARD.AddReg,LCARD_E2010.AddReg
+
+[LCARD_E2010.Dev.NT]
+CopyFiles=LCARD.Files.Ext,LCARD.Files.Inf
+AddReg=LCARD_E2010.AddReg
+
+[LCARD_E2010.AddReg]
+HKR,"Parameters","Type",0x00010001,32
+HKR,"Parameters","DSPType",0x00010001,0
+
+[LCARD_E2010.Dev.NT.Services]
+Addservice = ldevusbu, 0x00000002, LCARD.AddService
+
+
+; ************ E-310 Module ***************
+[LCARD_E310.Dev]
+CopyFiles=LCARD.Files.Ext,LCARD.Files.Inf
+AddReg=LCARD.AddReg,LCARD_E310.AddReg
+
+[LCARD_E310.Dev.NT]
+CopyFiles=LCARD.Files.Ext,LCARD.Files.Inf
+AddReg=LCARD_E310.AddReg
+
+[LCARD_E310.AddReg]
+HKR,"Parameters","Type",0x00010001,77
+HKR,"Parameters","DSPType",0x00010001,0
+
+[LCARD_E310.Dev.NT.Services]
+Addservice = ldevusbu, 0x00000002, LCARD.AddService
+
+
+; ************* common part ***************
+[LCARD.AddService]
+DisplayName    = %LCARD.SvcDesc%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 2                  ; SERVICE_AUTO_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %10%\System32\Drivers\ldevusbu.sys
+LoadOrderGroup = Extended Base
+
+[LCARD.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,"wdmstub.sys,ldevusbu.sys"
+
+[LCARD.Files.Ext]
+Ldevusbu.sys
+Ldevs.sys
+Wdmstub.sys
+
+[LCARD.Files.Inf]
+Lusbapi.inf
+
+
+;---------------------------------------------------------------;
+; Modules Types:                                                ;   
+;  E14-440     30                                               ;   
+;  E14-140     31                                               ;   
+;  E20-10		32                                               ;   
+;  E-154			38                                               ;   
+;  E-310			77                                               ;   
+;---------------------------------------------------------------;
+
+
+[Strings]
+LCARD="L-Card"
+MfgName="L-Card"
+USB\VID_0471&PID_0154.DeviceDesc="E-154"
+USB\VID_0471&PID_0140.DeviceDesc="E14-140"
+USB\VID_0471&PID_0440.DeviceDesc="E14-440"
+USB\VID_0471&PID_2010.DeviceDesc="E20-10"
+USB\VID_0471&PID_E310.DeviceDesc="E-310"
+
+LCARD.SvcDesc="Ldevusbu.sys WDM driver for L-Card USB devices"
+DeviceClassName="L-Card USB devices"
+
+[Strings.0419]
+LCARD="ООО 'Л Кард'"
+MfgName="ООО 'Л Кард'"
+USB\VID_0471&PID_0154.DeviceDesc="E-154"
+USB\VID_0471&PID_0140.DeviceDesc="E14-140"
+USB\VID_0471&PID_0440.DeviceDesc="E14-440"
+USB\VID_0471&PID_2010.DeviceDesc="E20-10"
+USB\VID_0471&PID_E310.DeviceDesc="E-310"
+
+LCARD.SvcDesc="Ldevusbu.sys WDM драйвер для USB устройств от фирмы ООО 'Л Кард'"
+DeviceClassName="USB устройства от фирмы ООО 'Л Кард'"
